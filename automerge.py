@@ -38,12 +38,10 @@ def parse_arguments():
     try:
         import argparse
         parser = argparse.ArgumentParser(description='auto merge post update hook')
-        parser.add_argument('refname', metavar='refname', help='refname')
-        parser.add_argument('oldrev', metavar='oldrev', help='old revision')
-        parser.add_argument('newrev', metavar='newrev', help='new revision')
+        parser.add_argument('branch', metavar='branch', help='branch')
         return parser.parse_args()
     except ImportError:
-        return Bunch(refname = sys.argv[1], oldrev = sys.argv[2], newrev = sys.argv[3])
+        return Bunch(refname = sys.argv[1])
 
 def automatic_merge(head_before_start, latest, branches_flow):
     log.debug('Auto-merging through: %s' % branches_flow)
@@ -73,10 +71,10 @@ if __name__ == '__main__':
     log.debug('Before we start we are at: %s' % head_before_start)
 
     options = parse_arguments()
-    log.debug('Parsed input parameters: %s %s %s' % (options.refname, options.oldrev, options.newrev))
+    log.debug('Parsed input parameters: %s ' % (options.branch))
 
     latest = latest_branches_commits(branches_flow)
     log.debug('Storing current heads of branches before we start: %s', pformat(latest))
 
-    branches_flow = start_from(get_branch(options.refname), branches_flow)
+    branches_flow = start_from(options.branch, branches_flow)
     automatic_merge(head_before_start, latest, branches_flow)
