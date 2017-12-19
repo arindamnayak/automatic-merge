@@ -1,4 +1,4 @@
 func dummyOps1{
     print "dummy ops1 executed"
-	print "v1 fetaure"
+	print "v1 fetaure - fixed"
 }
