@@ -49,7 +49,7 @@ def automatic_merge(head_before_start, latest, branches_flow):
     for branch in branches_flow:
         onto = next(branch, branches_flow)
         if onto:
-            exitcode = call('git checkout %s && git merge refs/heads/%s && git push origin %s' % (onto, branch, branch))
+            exitcode = call('git fetch --all && git checkout %s && git merge refs/heads/%s && git push origin %s' % (onto, branch, branch))
             if exitcode:
                 log.debug('Merge of %s onto %s failed, must reset to original state' % (branch, onto))
                 call('git reset --hard %s' % (latest[onto]))
