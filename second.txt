@@ -1,3 +1,4 @@
 func dummyOps2{
     print "dummy ops2 executed"
+	print "v2 feature implemented"
 }
