@@ -5,7 +5,7 @@ jdk:
 script:
   - echo "build passing"
 after_success:
-  - sh ./on-success.sh
+        # - sh ./on-success.sh
 notifications:
   email:
     - arindam.nayak@spigit.com
