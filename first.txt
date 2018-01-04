@@ -2,4 +2,5 @@ func dummyOps1{
     print "dummy ops1 executed"
     print "fixed in v1"
     print "more bug fixed in v1"
+    print "some more bug fixes in v1"
 }
